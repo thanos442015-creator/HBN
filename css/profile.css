@@ -1,0 +1,134 @@
+#profile {
+    width: 800px;
+
+    margin: 40px auto;
+}
+
+#profileCard {
+    background: rgb(35, 35, 35);
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+#profilePicture {
+    width: 140px;
+    height: 140px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 20px;
+}
+
+#stats {
+    display: flex;
+
+    justify-content: space-around;
+
+    margin-top: 40px;
+}
+
+#stats h2 {
+    color: rgb(70,150,255);
+}
+
+#editButton {
+
+    margin-top: 20px;
+
+    padding: 12px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+.profileInput {
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 8px;
+    margin-bottom: 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 10px;
+
+    font-size: 16px;
+
+}
+
+.profileTextarea {
+
+    width: 100%;
+
+    height: 120px;
+
+    margin-top: 8px;
+    margin-bottom: 20px;
+
+    resize: none;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 10px;
+
+    font-size: 16px;
+
+}
+
+#saveProfileButton {
+
+    width: 100%;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+#pictureInput {
+
+    margin: 20px 0;
+
+    color: white;
+
+}

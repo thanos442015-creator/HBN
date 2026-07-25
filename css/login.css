@@ -1,0 +1,109 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+}
+
+#loginContainer {
+
+    width: 420px;
+
+    background: rgb(35,35,35);
+
+    border-radius: 18px;
+
+    padding: 35px;
+
+    text-align: center;
+
+}
+
+#loginContainer h1 {
+
+    color: rgb(70,150,255);
+
+    margin-bottom: 10px;
+
+}
+
+#loginContainer h2 {
+
+    margin-bottom: 30px;
+
+}
+
+#loginContainer input {
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-bottom: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 10px;
+
+    font-size: 16px;
+
+}
+
+#loginContainer button {
+
+    width: 100%;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    font-size: 16px;
+
+}
+
+#message {
+
+    margin-top: 20px;
+
+    color: rgb(120,255,120);
+
+}
+
+.switchPage {
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: rgb(180,180,180);
+
+}
+
+.switchPage a {
+
+    color: rgb(70,150,255);
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+.switchPage a:hover {
+
+    text-decoration: underline;
+
+}

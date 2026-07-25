@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create HBN Account</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+
+    <div id="loginContainer">
+
+        <h1>HBN</h1>
+
+        <h2>Create Account</h2>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="Username"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+        >
+
+        <input
+            id="inviteCode"
+            type="text"
+            placeholder="Invitation Code"
+        >
+
+        <button id="createButton">
+            Create Account
+        </button>
+
+        <p id="message"></p>
+
+        <p class="switchPage">
+
+            Already have an account?
+
+            <a href="login.html">
+                Log in
+            </a>
+
+        </p>
+
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+
+</body>
+
+</html>

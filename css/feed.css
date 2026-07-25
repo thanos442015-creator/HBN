@@ -1,0 +1,287 @@
+#feed {
+
+    width: 700px;
+
+    margin: 35px auto;
+
+}
+
+#createPost {
+
+    background: rgb(35,35,35);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+#postInput {
+
+    width: 100%;
+
+    height: 120px;
+
+    resize: none;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 10px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 15px;
+
+    font-size: 17px;
+
+    box-sizing: border-box;
+
+}
+
+#createButtons {
+
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+}
+
+#createButtons button {
+
+    flex: 1;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#createButtons button:hover {
+
+    background: rgb(90,170,255);
+
+}
+
+.post {
+
+    background: rgb(35,35,35);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+.post h3 {
+
+    margin-bottom: 12px;
+
+}
+
+.post p {
+
+    font-size: 17px;
+
+    line-height: 1.5;
+
+}
+
+.postHeader {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+.profilePicture {
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+.postTop {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+}
+
+.postTime {
+
+    color: gray;
+
+    font-size: 13px;
+
+}
+
+.postButtons {
+
+    margin-top: 20px;
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.postButtons button {
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 15px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.postButtons button:hover {
+
+    background: rgb(70,150,255);
+
+}
+
+.comments {
+
+    margin-top: 20px;
+
+}
+
+.comment {
+
+    margin-top: 8px;
+
+    padding: 10px;
+
+    border-radius: 8px;
+
+    background: rgb(55,55,55);
+
+    font-size: 15px;
+
+}
+
+.comment strong {
+
+    color: rgb(70,150,255);
+
+}
+
+.commentCreator {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+}
+
+.commentInput {
+
+    flex: 1;
+
+    height: 40px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 0 12px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+}
+
+.commentButton {
+
+    width: 110px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.commentButton:hover {
+
+    background: rgb(90,170,255);
+
+}
+
+.usernameLink {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+.usernameLink:hover {
+
+    color: rgb(70,150,255);
+
+}
