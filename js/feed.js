@@ -224,7 +224,15 @@ function drawPosts() {
 
             deleteButton = `
                 <button onclick="deletePost(${i})">
-                    🗑 Delete
+
+                    <img
+                        src="images/icons/delete.png"
+                        class="buttonIcon"
+                        alt="Delete"
+                    >
+
+                    Delete
+
                 </button>
             `;
 
@@ -273,7 +281,13 @@ function drawPosts() {
 
                     <button onclick="likePost(${i})">
 
-                        ❤️ ${posts[i].likes}
+                        <img
+                            src="images/icons/heart.png"
+                            class="buttonIcon"
+                            alt="Like"
+                        >
+
+                        ${posts[i].likes}
 
                     </button>
 

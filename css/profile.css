@@ -168,3 +168,25 @@
     color: white;
 
 }
+
+#profileStats {
+
+    display: flex;
+
+    justify-content: space-around;
+
+    align-items: center;
+
+    margin: 40px 0;
+
+    width: 100%;
+
+}
+
+.stat {
+
+    flex: 1;
+
+    text-align: center;
+
+}
