@@ -37,23 +37,59 @@
     color: rgb(70,150,255);
 }
 
-#editButton {
+#editProfileButton,
+#humanButton {
 
-    margin-top: 20px;
+    margin-top: 25px;
 
-    padding: 12px 22px;
+    width: 220px;
+
+    height: 48px;
 
     border: none;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     background: rgb(70,150,255);
 
     color: white;
 
-    font-size: 16px;
+    font-size: 17px;
+
+    font-weight: bold;
 
     cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow: 0px 0px 18px rgba(70,150,255,0.35);
+
+}
+
+#editProfileButton:hover,
+#humanButton:hover {
+
+    background: rgb(90,170,255);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0px 0px 25px rgba(70,150,255,0.55);
+
+}
+
+#editProfileButton:active,
+#humanButton:active {
+
+    transform: scale(0.96);
+
+}
+
+#humanButton {
+
+    margin-left: 10px;
 
 }
 
