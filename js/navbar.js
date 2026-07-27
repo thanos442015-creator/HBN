@@ -2,86 +2,174 @@ const navbar = document.getElementById("navbar");
 
 navbar.innerHTML = `
     <div id="navLeft">
-        <h1 id="logo" style="cursor:pointer;">HBN</h1>
+
+        <h1 id="logo">
+
+            HBN
+
+        </h1>
+
     </div>
 
-    <div id="navCenter">
-        <input
-            id="searchBar"
-            type="search"
-            placeholder="Search users..."
-        >
-    </div>
+    <button id="menuButton">
+
+        ☰
+
+    </button>
 
     <div id="navRight">
+
         <button class="navButton" id="homeButton">
+
             Home
+
         </button>
 
         <button class="navButton" id="classesButton">
+
             Classes
-        </button>
 
-        <button class="navButton" id="messagesButton">
-            Messages
-        </button>
-
-        <button class="navButton" id="notificationsButton">
-            Notifications
         </button>
 
         <button class="navButton" id="profileButton">
+
             Profile
+
         </button>
 
         <button class="navButton" id="logoutButton">
+
             Logout
+
         </button>
+
     </div>
 `;
 
-document.getElementById("logo").onclick = function () {
+const logo =
+    document.getElementById("logo");
 
-    window.location.href = "index.html";
+const menuButton =
+    document.getElementById("menuButton");
 
-};
+const navRight =
+    document.getElementById("navRight");
 
-document.getElementById("homeButton").onclick = function () {
+logo.onclick = function () {
 
-    window.location.href = "index.html";
-
-};
-
-document.getElementById("classesButton").onclick = function () {
-
-    window.location.href = "classes.html";
+    window.location.href =
+        "index.html";
 
 };
 
-document.getElementById("messagesButton").onclick = function () {
+document.getElementById("homeButton").onclick =
+function () {
 
-    alert("Messages coming soon!");
-
-};
-
-document.getElementById("notificationsButton").onclick = function () {
-
-    alert("Notifications coming soon!");
+    window.location.href =
+        "index.html";
 
 };
 
-document.getElementById("profileButton").onclick = function () {
+document.getElementById("classesButton").onclick =
+function () {
 
-    window.location.href = "profile.html";
+    window.location.href =
+        "classes.html";
+
+};
+
+document.getElementById("profileButton").onclick =
+function () {
+
+    window.location.href =
+        "profile.html";
 
 };
 
-document.getElementById("logoutButton").onclick = function () {
+document.getElementById("logoutButton").onclick =
+function () {
 
-    localStorage.removeItem("HBN_LoggedIn");
+    localStorage.removeItem(
+        "HBN_LoggedIn"
+    );
 
-    localStorage.removeItem("HBN_User");
+    localStorage.removeItem(
+        "HBN_User"
+    );
 
-    window.location.href = "login.html";
+    window.location.href =
+        "login.html";
 
 };
+
+function updateNavbar() {
+
+    if (
+        window.innerWidth <= 768
+    ) {
+
+        menuButton.style.display =
+            "block";
+
+        navRight.classList.remove(
+            "desktopNavbar"
+        );
+
+        navRight.classList.add(
+            "mobileNavbar"
+        );
+
+        navRight.style.display =
+            "none";
+
+    } else {
+
+        menuButton.style.display =
+            "none";
+
+        navRight.style.display =
+            "flex";
+
+        navRight.classList.remove(
+            "mobileNavbar"
+        );
+
+        navRight.classList.add(
+            "desktopNavbar"
+        );
+
+    }
+
+}
+
+menuButton.onclick = function () {
+
+    if (
+        navRight.style.display ===
+        "flex"
+    ) {
+
+        navRight.style.display =
+            "none";
+
+        menuButton.textContent =
+            "☰";
+
+    } else {
+
+        navRight.style.display =
+            "flex";
+
+        menuButton.textContent =
+            "✕";
+
+    }
+
+};
+
+window.addEventListener(
+    "resize",
+    updateNavbar
+);
+
+updateNavbar();
