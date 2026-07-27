@@ -1,0 +1,213 @@
+#teacherPanel {
+
+    width: 900px;
+
+    margin: 50px auto;
+
+    background: rgb(35,35,35);
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+}
+
+#teacherPanel h1 {
+
+    text-align: center;
+
+    color: white;
+
+    margin-bottom: 10px;
+
+}
+
+#teacherPanel p {
+
+    text-align: center;
+
+    color: rgb(180,180,180);
+
+    margin-bottom: 35px;
+
+}
+
+#searchSection {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-bottom: 40px;
+
+}
+
+#usernameInput {
+
+    width: 350px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgb(55,55,55);
+
+    color: white;
+
+    padding: 0 15px;
+
+    font-size: 16px;
+
+    outline: none;
+
+}
+
+#usernameInput::placeholder {
+
+    color: rgb(160,160,160);
+
+}
+
+#makeTeacherButton {
+
+    width: 180px;
+
+    height: 48px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: rgb(70,150,255);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+#makeTeacherButton:hover {
+
+    background: rgb(95,170,255);
+
+    transform: translateY(-2px);
+
+}
+
+#makeTeacherButton:active {
+
+    transform: scale(0.97);
+
+}
+
+hr {
+
+    border: none;
+
+    border-top: 1px solid rgb(60,60,60);
+
+    margin: 35px 0;
+
+}
+
+#teacherPanel h2 {
+
+    color: white;
+
+    margin-bottom: 20px;
+
+}
+
+#teacherList {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+.teacherCard {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgb(45,45,45);
+
+    border-radius: 14px;
+
+    padding: 18px 22px;
+
+}
+
+.teacherName {
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+.teacherBadge {
+
+    color: rgb(0,220,120);
+
+    margin-right: 10px;
+
+}
+
+.removeTeacherButton {
+
+    width: 120px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: rgb(220,70,70);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+.removeTeacherButton:hover {
+
+    background: rgb(240,90,90);
+
+    transform: translateY(-2px);
+
+}
+
+.removeTeacherButton:active {
+
+    transform: scale(0.96);
+
+}

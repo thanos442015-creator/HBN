@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HBN Teacher Panel</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/teacher.css">
+
+</head>
+
+<body>
+
+    <div id="teacherPanel">
+
+        <h1>Teacher Management</h1>
+
+        <p>
+            Manage teacher accounts for HBN.
+        </p>
+
+        <div id="searchSection">
+
+            <input
+                id="usernameInput"
+                type="text"
+                placeholder="Enter username..."
+            >
+
+            <button id="makeTeacherButton">
+
+                Make Teacher
+
+            </button>
+
+        </div>
+
+        <hr>
+
+        <h2>Current Teachers</h2>
+
+        <div id="teacherList">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/teacher.js"></script>
+
+</body>
+
+</html>

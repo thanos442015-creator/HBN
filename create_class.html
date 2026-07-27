@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Class</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/create_class.css">
+
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1>Create Class</h1>
+
+        <p id="subtitle">
+
+            Create a new class for your students.
+
+        </p>
+
+        <div id="card">
+
+            <label>
+
+                Class Name
+
+            </label>
+
+            <input
+                id="className"
+                type="text"
+                maxlength="50"
+                placeholder="Computer Science"
+            >
+
+            <button id="createButton">
+
+                Create Class
+
+            </button>
+
+        </div>
+
+        <div id="createdClasses">
+
+            <h2>Your Classes</h2>
+
+            <div id="classList">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/create_class.js"></script>
+
+</body>
+
+</html>
