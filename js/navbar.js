@@ -1,10 +1,10 @@
-const currentUser = JSON.parse(
+const navbarUser = JSON.parse(
     localStorage.getItem("HBN_User")
 );
 
 const isAdmin =
-    currentUser &&
-    currentUser.username ===
+    navbarUser &&
+    navbarUser.username ===
     "Thanos Johnson";
 
 const navbar = document.getElementById("navbar");
