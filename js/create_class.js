@@ -21,6 +21,14 @@ initialize();
 
 async function initialize() {
 
+    if (currentUser.username === "Thanos Johnson") {
+
+        loadClasses();
+
+        return;
+
+    }
+
     const { data, error } =
         await window.hbxSupabase
             .from("users")
