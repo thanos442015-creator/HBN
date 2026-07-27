@@ -8,18 +8,16 @@ if (!currentUser) {
 
 }
 
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
+const params = new URLSearchParams(
+    window.location.search
+);
 
-const classId =
-    params.get("id");
+const classId = params.get("id");
 
 if (!classId) {
 
     window.location.href =
-        "create_class.html";
+        "classes.html";
 
 }
 
@@ -29,8 +27,25 @@ const className =
 const teacherName =
     document.getElementById("teacherName");
 
+const manageStudentsButton =
+    document.getElementById(
+        "manageStudentsButton"
+    );
+
+const studentManager =
+    document.getElementById(
+        "studentManager"
+    );
+
+const closeStudentManager =
+    document.getElementById(
+        "closeStudentManager"
+    );
+
 const studentSearch =
-    document.getElementById("studentSearch");
+    document.getElementById(
+        "studentSearch"
+    );
 
 const addStudentButton =
     document.getElementById(
@@ -65,7 +80,7 @@ initialize();
 
 async function initialize() {
 
-    const { data: userData, error: userError } =
+    const { data: userData } =
         await window.hbxSupabase
             .from("users")
             .select("is_teacher")
@@ -75,21 +90,15 @@ async function initialize() {
             )
             .maybeSingle();
 
-    if (userError || !userData) {
-
-        window.location.href =
-            "index.html";
-
-        return;
-
-    }
-
     isTeacher =
-        userData.is_teacher ||
+        userData?.is_teacher ||
         currentUser.username ===
         "Thanos Johnson";
 
-    const { data: classData, error: classError } =
+    const {
+        data: classData,
+        error
+    } =
         await window.hbxSupabase
             .from("classes")
             .select("*")
@@ -99,10 +108,10 @@ async function initialize() {
             )
             .maybeSingle();
 
-    if (classError || !classData) {
+    if (error || !classData) {
 
         window.location.href =
-            "create_class.html";
+            "classes.html";
 
         return;
 
@@ -113,7 +122,9 @@ async function initialize() {
 
     if (!isTeacher) {
 
-        const { data: member } =
+        const {
+            data: member
+        } =
             await window.hbxSupabase
                 .from("class_members")
                 .select("*")
@@ -130,7 +141,7 @@ async function initialize() {
         if (!member) {
 
             window.location.href =
-                "index.html";
+                "classes.html";
 
             return;
 
@@ -145,29 +156,38 @@ async function initialize() {
         "Teacher: " +
         currentClass.teacher;
 
-    if (!isTeacher) {
+    if (isTeacher) {
 
-        studentSearch.style.display =
-            "none";
+        manageStudentsButton.onclick =
+            function () {
 
-        addStudentButton.style.display =
-            "none";
+                studentManager.style.display =
+                    "flex";
 
-        postInput.style.display =
-            "none";
+            };
 
-        postButton.style.display =
+        closeStudentManager.onclick =
+            function () {
+
+                studentManager.style.display =
+                    "none";
+
+            };
+
+        addStudentButton.onclick =
+            addStudent;
+
+        loadStudents();
+
+    } else {
+
+        manageStudentsButton.style.display =
             "none";
 
     }
 
-    addStudentButton.onclick =
-        addStudent;
-
     postButton.onclick =
         createPost;
-
-    loadStudents();
 
     loadPosts();
 
@@ -200,19 +220,21 @@ async function loadStudents() {
 
     if (data.length === 0) {
 
-        studentList.innerHTML =
+        studentList.innerHTML = `
 
-            "<p>No students.</p>";
+            <p>
+
+                No students yet.
+
+            </p>
+
+        `;
 
         return;
 
     }
 
-    for (
-        let i = 0;
-        i < data.length;
-        i++
-    ) {
+    for (let i = 0; i < data.length; i++) {
 
         studentList.innerHTML += `
 
@@ -224,24 +246,14 @@ async function loadStudents() {
 
                 </span>
 
-                ${
-                    isTeacher
-                    ?
+                <button
+                    class="removeStudentButton"
+                    onclick="removeStudent('${data[i].username}')"
+                >
 
-                    `<button
-                        class="removeStudentButton"
-                        onclick="removeStudent('${data[i].username}')"
-                    >
+                    Remove
 
-                        Remove
-
-                    </button>`
-
-                    :
-
-                    ""
-
-                }
+                </button>
 
             </div>
 
@@ -258,15 +270,11 @@ async function addStudent() {
 
     if (username === "") {
 
-        alert(
-            "Enter a username."
-        );
-
         return;
 
     }
 
-    const { data: user, error } =
+    const { data: user } =
         await window.hbxSupabase
             .from("users")
             .select("*")
@@ -275,14 +283,6 @@ async function addStudent() {
                 username
             )
             .maybeSingle();
-
-    if (error) {
-
-        alert(error.message);
-
-        return;
-
-    }
 
     if (!user) {
 
@@ -311,35 +311,24 @@ async function addStudent() {
     if (existing) {
 
         alert(
-            "That student is already in this class."
+            "Already in class."
         );
 
         return;
 
     }
 
-    const { error: insertError } =
-        await window.hbxSupabase
-            .from("class_members")
-            .insert({
+    await window.hbxSupabase
+        .from("class_members")
+        .insert({
 
-                class_id:
-                    classId,
+            class_id:
+                classId,
 
-                username:
-                    username
+            username:
+                username
 
-            });
-
-    if (insertError) {
-
-        alert(
-            insertError.message
-        );
-
-        return;
-
-    }
+        });
 
     studentSearch.value = "";
 
@@ -351,41 +340,29 @@ async function removeStudent(
     username
 ) {
 
-    const answer =
-        confirm(
+    if (
+        !confirm(
             "Remove " +
             username +
-            " from this class?"
-        );
-
-    if (!answer) {
-
-        return;
-
-    }
-
-    const { error } =
-        await window.hbxSupabase
-            .from("class_members")
-            .delete()
-            .eq(
-                "class_id",
-                classId
-            )
-            .eq(
-                "username",
-                username
-            );
-
-    if (error) {
-
-        alert(
-            error.message
-        );
+            "?"
+        )
+    ) {
 
         return;
 
     }
+
+    await window.hbxSupabase
+        .from("class_members")
+        .delete()
+        .eq(
+            "class_id",
+            classId
+        )
+        .eq(
+            "username",
+            username
+        );
 
     loadStudents();
 
@@ -393,14 +370,10 @@ async function removeStudent(
 
 async function createPost() {
 
-    const content =
+    const text =
         postInput.value.trim();
 
-    if (content === "") {
-
-        alert(
-            "Write something first."
-        );
+    if (text === "") {
 
         return;
 
@@ -415,10 +388,10 @@ async function createPost() {
                     currentUser.username,
 
                 profile_picture:
-                    currentUser.profilePicture || "",
+                    currentUser.profilePicture ||
+                    "images/profiles/default.png",
 
-                text:
-                    content,
+                text: text,
 
                 likes: 0,
 
@@ -473,11 +446,11 @@ async function loadPosts() {
 
         posts.innerHTML = `
 
-            <p>
+            <div class="post">
 
                 No posts yet.
 
-            </p>
+            </div>
 
         `;
 
@@ -485,46 +458,94 @@ async function loadPosts() {
 
     }
 
-    for (
-        let i = 0;
-        i < data.length;
-        i++
-    ) {
+    for (let i = 0; i < data.length; i++) {
+
+        const teacherPost =
+            data[i].username ===
+            currentClass.teacher;
+
+        const deleteButton =
+            isTeacher ||
+            data[i].username ===
+            currentUser.username
+            ?
+            `
+            <button
+                class="deleteButton"
+                onclick="deletePost(${data[i].id})"
+            >
+
+                Delete
+
+            </button>
+            `
+            :
+            "";
 
         posts.innerHTML += `
 
-            <div class="postCard">
+            <div class="postCard ${teacherPost ? "teacherPost" : ""}">
 
-                <div class="postAuthor">
+                <div class="postHeader">
 
-                    ${data[i].username}
+                    <img
+                        class="profilePicture"
+                        src="${data[i].profile_picture}"
+                    >
+
+                    <div>
+
+                        <div class="postAuthor">
+
+                            ${data[i].username}
+
+                            ${
+                                teacherPost
+                                ?
+
+                                `<span class="teacherBadge">
+
+                                    ✔
+
+                                </span>`
+
+                                :
+
+                                ""
+
+                            }
+
+                        </div>
+
+                        <div class="postTime">
+
+                            ${new Date(data[i].created_at).toLocaleString()}
+
+                        </div>
+
+                    </div>
 
                 </div>
 
                 <div class="postContent">
 
-                    ${data[i].content}
+                    ${data[i].text}
 
                 </div>
 
-                ${
-                    isTeacher
-                    ?
+                <div class="postButtons">
 
-                    `<button
-                        class="deleteButton"
-                        onclick="deletePost(${data[i].id})"
+                    <button
+                        onclick="likePost(${data[i].id}, ${data[i].likes})"
                     >
 
-                        Delete
+                        ❤️ ${data[i].likes}
 
-                    </button>`
+                    </button>
 
-                    :
+                    ${deleteButton}
 
-                    ""
-
-                }
+                </div>
 
             </div>
 
@@ -534,39 +555,49 @@ async function loadPosts() {
 
 }
 
+async function likePost(
+    id,
+    likes
+) {
+
+    await window.hbxSupabase
+        .from("posts")
+        .update({
+
+            likes:
+                likes + 1
+
+        })
+        .eq(
+            "id",
+            id
+        );
+
+    loadPosts();
+
+}
+
 async function deletePost(
     id
 ) {
 
-    const answer =
-        confirm(
+    if (
+        !confirm(
             "Delete this post?"
-        );
-
-    if (!answer) {
-
-        return;
-
-    }
-
-    const { error } =
-        await window.hbxSupabase
-            .from("posts")
-            .delete()
-            .eq(
-                "id",
-                id
-            );
-
-    if (error) {
-
-        alert(
-            error.message
-        );
+        )
+    ) {
 
         return;
 
     }
+
+    await window.hbxSupabase
+        .from("posts")
+        .delete()
+        .eq(
+            "id",
+            id
+        );
 
     loadPosts();
 

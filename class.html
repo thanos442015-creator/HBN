@@ -5,43 +5,105 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>HBN Class</title>
+    <title>Class</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/class.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/class.css"
+    >
 
 </head>
 
 <body>
 
-    <div id="classContainer">
+    <div id="navbar"></div>
+
+    <div id="main">
 
         <div id="classHeader">
 
-            <h1 id="className">
+            <div>
 
-                Loading...
+                <h1 id="className">
 
-            </h1>
+                    Loading...
 
-            <p id="teacherName">
+                </h1>
 
-                Loading...
+                <p id="teacherName">
 
-            </p>
+                    Loading...
+
+                </p>
+
+            </div>
+
+            <button
+                id="manageStudentsButton"
+            >
+
+                Manage Students
+
+            </button>
 
         </div>
 
-        <div id="studentPanel">
+        <div id="createPost">
+
+            <textarea
+                id="postInput"
+                placeholder="Share something with your class..."
+            ></textarea>
+
+            <div id="createButtons">
+
+                <button
+                    id="postButton"
+                >
+
+                    Post
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div id="posts">
+
+            Loading...
+
+        </div>
+
+    </div>
+
+    <div
+        id="studentManager"
+        style="display:none;"
+    >
+
+        <div id="studentManagerCard">
 
             <h2>
 
-                Students
+                Manage Students
 
             </h2>
 
@@ -50,7 +112,7 @@
                 <input
                     id="studentSearch"
                     type="text"
-                    placeholder="Enter username..."
+                    placeholder="Search username..."
                 >
 
                 <button
@@ -69,40 +131,22 @@
 
             </div>
 
-        </div>
-
-        <div id="postPanel">
-
-            <h2>
-
-                Class Posts
-
-            </h2>
-
-            <textarea
-                id="postInput"
-                placeholder="Write something..."
-            ></textarea>
-
             <button
-                id="postButton"
+                id="closeStudentManager"
             >
 
-                Post
+                Close
 
             </button>
-
-            <div id="posts">
-
-                Loading...
-
-            </div>
 
         </div>
 
     </div>
 
     <script src="js/supabase.js"></script>
+
+    <script src="js/navbar.js"></script>
+
     <script src="js/class.js"></script>
 
 </body>
