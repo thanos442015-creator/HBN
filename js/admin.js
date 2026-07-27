@@ -1,6 +1,20 @@
 alert("Admin.js loaded!");
 
-const currentUser = JSON.parse(localStorage.getItem("HBN_User"));
+const currentUser = JSON.parse(
+    localStorage.getItem("HBN_User")
+);
+
+if (!currentUser) {
+
+    window.location.href = "login.html";
+
+}
+
+if (currentUser.username !== "Thanos Johnson") {
+
+    window.location.href = "index.html";
+
+}
 
 alert(currentUser.username);
 

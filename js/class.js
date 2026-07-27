@@ -414,7 +414,10 @@ async function createPost() {
                 username:
                     currentUser.username,
 
-                content:
+                profile_picture:
+                    currentUser.profilePicture || "",
+
+                text:
                     content,
 
                 likes: 0,
