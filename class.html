@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>HBN Class</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/class.css">
+
+</head>
+
+<body>
+
+    <div id="classContainer">
+
+        <div id="classHeader">
+
+            <h1 id="className">
+
+                Loading...
+
+            </h1>
+
+            <p id="teacherName">
+
+                Loading...
+
+            </p>
+
+        </div>
+
+        <div id="studentPanel">
+
+            <h2>
+
+                Students
+
+            </h2>
+
+            <div id="studentControls">
+
+                <input
+                    id="studentSearch"
+                    type="text"
+                    placeholder="Enter username..."
+                >
+
+                <button
+                    id="addStudentButton"
+                >
+
+                    Add Student
+
+                </button>
+
+            </div>
+
+            <div id="studentList">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <div id="postPanel">
+
+            <h2>
+
+                Class Posts
+
+            </h2>
+
+            <textarea
+                id="postInput"
+                placeholder="Write something..."
+            ></textarea>
+
+            <button
+                id="postButton"
+            >
+
+                Post
+
+            </button>
+
+            <div id="posts">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/supabase.js"></script>
+    <script src="js/class.js"></script>
+
+</body>
+
+</html>
