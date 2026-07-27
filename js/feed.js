@@ -331,29 +331,150 @@ function drawPosts() {
 
 async function likePost(index) {
 
-    const newLikes = posts[index].likes + 1;
+    const post =
+        posts[index];
 
-    const { error } = await window.hbxSupabase
-        .from("posts")
-        .update({
+    const {
+        data: existingLike,
+        error: likeError
+    } =
+        await window.hbxSupabase
+            .from("post_likes")
+            .select("*")
+            .eq(
+                "post_id",
+                post.id
+            )
+            .eq(
+                "username",
+                currentUser.username
+            )
+            .maybeSingle();
 
-            likes: newLikes
+    if (likeError) {
 
-        })
-        .eq("id", posts[index].id);
-
-    if (error) {
-
-        alert(error.message);
+        alert(
+            likeError.message
+        );
 
         return;
+
+    }
+
+    if (existingLike) {
+
+        const {
+            error: deleteError
+        } =
+            await window.hbxSupabase
+                .from("post_likes")
+                .delete()
+                .eq(
+                    "post_id",
+                    post.id
+                )
+                .eq(
+                    "username",
+                    currentUser.username
+                );
+
+        if (deleteError) {
+
+            alert(
+                deleteError.message
+            );
+
+            return;
+
+        }
+
+        const {
+            error: updateError
+        } =
+            await window.hbxSupabase
+                .from("posts")
+                .update({
+
+                    likes:
+                        Math.max(
+                            0,
+                            post.likes - 1
+                        )
+
+                })
+                .eq(
+                    "id",
+                    post.id
+                );
+
+        if (updateError) {
+
+            alert(
+                updateError.message
+            );
+
+            return;
+
+        }
+
+    } else {
+
+        const {
+            error: insertError
+        } =
+            await window.hbxSupabase
+                .from("post_likes")
+                .insert({
+
+                    post_id:
+                        post.id,
+
+                    username:
+                        currentUser.username
+
+                });
+
+        if (insertError) {
+
+            alert(
+                insertError.message
+            );
+
+            return;
+
+        }
+
+        const {
+            error: updateError
+        } =
+            await window.hbxSupabase
+                .from("posts")
+                .update({
+
+                    likes:
+                        post.likes + 1
+
+                })
+                .eq(
+                    "id",
+                    post.id
+                );
+
+        if (updateError) {
+
+            alert(
+                updateError.message
+            );
+
+            return;
+
+        }
 
     }
 
     await loadPosts();
 
 }
-
 async function commentPost(index) {
 
     const input = document.getElementById(

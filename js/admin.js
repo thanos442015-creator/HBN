@@ -6,31 +6,80 @@ const currentUser = JSON.parse(
 
 if (!currentUser) {
 
-    window.location.href = "login.html";
+    window.location.href =
+        "login.html";
 
 }
 
-if (currentUser.username !== "Thanos Johnson") {
+if (
+    currentUser.username !==
+    "Thanos Johnson"
+) {
 
-    window.location.href = "index.html";
+    window.location.href =
+        "index.html";
 
 }
 
-alert(currentUser.username);
+const amountInput =
+    document.getElementById(
+        "amountInput"
+    );
 
-const amountInput = document.getElementById("amountInput");
-const generateButton = document.getElementById("generateButton");
-const copyAllButton = document.getElementById("copyAllButton");
-const clearButton = document.getElementById("clearButton");
-const searchInput = document.getElementById("searchInput");
-const unusedList = document.getElementById("unusedList");
-const usedList = document.getElementById("usedList");
+const generateButton =
+    document.getElementById(
+        "generateButton"
+    );
+
+const copyAllButton =
+    document.getElementById(
+        "copyAllButton"
+    );
+
+const clearButton =
+    document.getElementById(
+        "clearButton"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const unusedList =
+    document.getElementById(
+        "unusedList"
+    );
+
+const usedList =
+    document.getElementById(
+        "usedList"
+    );
+
+const teacherList =
+    document.getElementById(
+        "teacherList"
+    );
+
+const usernameInput =
+    document.getElementById(
+        "usernameInput"
+    );
+
+const makeTeacherButton =
+    document.getElementById(
+        "makeTeacherButton"
+    );
 
 let codes = [];
 
-generateButton.onclick = async function () {
+generateButton.onclick =
+async function () {
 
-    const amount = Number(amountInput.value);
+    const amount =
+        Number(
+            amountInput.value
+        );
 
     if (amount < 1) {
 
@@ -38,27 +87,41 @@ generateButton.onclick = async function () {
 
     }
 
-    await generateCodes(amount);
+    await generateCodes(
+        amount
+    );
 
 };
 
-copyAllButton.onclick = function () {
+copyAllButton.onclick =
+function () {
 
     let text = "";
 
-    for (let i = 0; i < codes.length; i++) {
+    for (
+        let i = 0;
+        i < codes.length;
+        i++
+    ) {
 
-        text += codes[i].code + "\n";
+        text +=
+            codes[i].code +
+            "\n";
 
     }
 
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(
+        text
+    );
 
-    alert("Copied all codes!");
+    alert(
+        "Copied all codes!"
+    );
 
 };
 
-clearButton.onclick = function () {
+clearButton.onclick =
+function () {
 
     codes = [];
 
@@ -66,37 +129,62 @@ clearButton.onclick = function () {
 
 };
 
-searchInput.oninput = drawCodes;
+searchInput.oninput =
+    drawCodes;
 
-async function generateCodes(amount) {
+makeTeacherButton.onclick =
+    makeTeacher;
 
-    for (let i = 0; i < amount; i++) {
+loadCodes();
+
+loadTeachers();
+
+async function generateCodes(
+    amount
+) {
+
+    for (
+        let i = 0;
+        i < amount;
+        i++
+    ) {
 
         let newCode;
 
         do {
 
-            newCode = createCode();
+            newCode =
+                createCode();
 
-        } while (codeExists(newCode));
+        } while (
+            codeExists(
+                newCode
+            )
+        );
 
-        const { error } = await window.hbxSupabase
-            .from("invitation_codes")
-            .insert({
+        const { error } =
+            await window.hbxSupabase
+                .from(
+                    "invitation_codes"
+                )
+                .insert({
 
-                code: newCode,
+                    code:
+                        newCode,
 
-                used: false,
+                    used:
+                        false,
 
-                username: null
+                    username:
+                        null
 
-            });
+                });
 
         if (error) {
 
-            console.error(error);
-
-            alert(error.message);
+            alert(
+                error.message
+            );
 
             return;
 
@@ -104,11 +192,14 @@ async function generateCodes(amount) {
 
         codes.push({
 
-            code: newCode,
+            code:
+                newCode,
 
-            used: false,
+            used:
+                false,
 
-            user: "-"
+            user:
+                "-"
 
         });
 
@@ -118,11 +209,20 @@ async function generateCodes(amount) {
 
 }
 
-function codeExists(code) {
+function codeExists(
+    code
+) {
 
-    for (let i = 0; i < codes.length; i++) {
+    for (
+        let i = 0;
+        i < codes.length;
+        i++
+    ) {
 
-        if (codes[i].code === code) {
+        if (
+            codes[i].code ===
+            code
+        ) {
 
             return true;
 
@@ -136,21 +236,40 @@ function codeExists(code) {
 
 function createCode() {
 
-    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const letters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     let code = "";
 
-    for (let i = 0; i < 5; i++) {
+    for (
+        let i = 0;
+        i < 5;
+        i++
+    ) {
 
-        code += letters[Math.floor(Math.random() * 26)];
+        code +=
+            letters[
+                Math.floor(
+                    Math.random() *
+                    26
+                )
+            ];
 
     }
 
     code += "-";
 
-    for (let i = 0; i < 4; i++) {
+    for (
+        let i = 0;
+        i < 4;
+        i++
+    ) {
 
-        code += Math.floor(Math.random() * 10);
+        code +=
+            Math.floor(
+                Math.random() *
+                10
+            );
 
     }
 
@@ -160,16 +279,30 @@ function createCode() {
 
 async function loadCodes() {
 
-    const { data, error } = await window.hbxSupabase
-        .from("invitation_codes")
-        .select("*")
-        .order("created_at", { ascending: false });
+    const {
+        data,
+        error
+    } =
+        await window.hbxSupabase
+            .from(
+                "invitation_codes"
+            )
+            .select("*")
+            .order(
+                "created_at",
+                {
+
+                    ascending:
+                        false
+
+                }
+            );
 
     if (error) {
 
-        console.error(error);
-
-        alert(error.message);
+        alert(
+            error.message
+        );
 
         return;
 
@@ -177,15 +310,23 @@ async function loadCodes() {
 
     codes = [];
 
-    for (let i = 0; i < data.length; i++) {
+    for (
+        let i = 0;
+        i < data.length;
+        i++
+    ) {
 
         codes.push({
 
-            code: data[i].code,
+            code:
+                data[i].code,
 
-            used: data[i].used,
+            used:
+                data[i].used,
 
-            user: data[i].username || "-"
+            user:
+                data[i].username ||
+                "-"
 
         });
 
@@ -201,44 +342,76 @@ function drawCodes() {
 
     usedList.innerHTML = "";
 
-    const search = searchInput.value.toUpperCase();
+    const search =
+        searchInput.value
+            .toUpperCase();
 
-    for (let i = 0; i < codes.length; i++) {
+    for (
+        let i = 0;
+        i < codes.length;
+        i++
+    ) {
 
-        if (!codes[i].code.includes(search)) {
+        if (
+            !codes[i]
+                .code
+                .includes(search)
+        ) {
 
             continue;
 
         }
 
         const html = `
+
             <div class="codeCard">
 
-                <span>${codes[i].code}</span>
-
                 <span>
-                    ${codes[i].used ? "Used" : "Unused"}
+
+                    ${codes[i].code}
+
                 </span>
 
-                <span>${codes[i].user}</span>
+                <span>
+
+                    ${
+                        codes[i].used
+                        ? "Used"
+                        : "Unused"
+                    }
+
+                </span>
+
+                <span>
+
+                    ${codes[i].user}
+
+                </span>
 
                 <button
                     class="copyButton"
                     onclick="copyCode(${i})"
                 >
+
                     Copy
+
                 </button>
 
             </div>
+
         `;
 
-        if (codes[i].used) {
+        if (
+            codes[i].used
+        ) {
 
-            usedList.innerHTML += html;
+            usedList.innerHTML +=
+                html;
 
         } else {
 
-            unusedList.innerHTML += html;
+            unusedList.innerHTML +=
+                html;
 
         }
 
@@ -246,20 +419,247 @@ function drawCodes() {
 
 }
 
-function copyCode(index) {
+function copyCode(
+    index
+) {
 
-    navigator.clipboard.writeText(codes[index].code);
+    navigator.clipboard.writeText(
 
-    const buttons = document.getElementsByClassName("copyButton");
+        codes[index].code
 
-    buttons[index].textContent = "Copied!";
+    );
 
-    setTimeout(function () {
+    const buttons =
+        document.getElementsByClassName(
+            "copyButton"
+        );
 
-        buttons[index].textContent = "Copy";
+    buttons[index].textContent =
+        "Copied!";
 
-    }, 1000);
+    setTimeout(
+        function () {
+
+            buttons[index].textContent =
+                "Copy";
+
+        },
+        1000
+    );
 
 }
 
-loadCodes();
+async function makeTeacher() {
+
+    const username =
+        usernameInput.value.trim();
+
+    if (
+        username === ""
+    ) {
+
+        alert(
+            "Enter a username."
+        );
+
+        return;
+
+    }
+
+    const {
+        data,
+        error
+    } =
+        await window.hbxSupabase
+            .from("users")
+            .select("*")
+            .eq(
+                "username",
+                username
+            )
+            .maybeSingle();
+
+    if (error) {
+
+        alert(
+            error.message
+        );
+
+        return;
+
+    }
+
+    if (!data) {
+
+        alert(
+            "User not found."
+        );
+
+        return;
+
+    }
+
+    const {
+        error: updateError
+    } =
+        await window.hbxSupabase
+            .from("users")
+            .update({
+
+                is_teacher: true
+
+            })
+            .eq(
+                "username",
+                username
+            );
+
+    if (updateError) {
+
+        alert(
+            updateError.message
+        );
+
+        return;
+
+    }
+
+    usernameInput.value = "";
+
+    loadTeachers();
+
+}
+
+async function loadTeachers() {
+
+    const {
+        data,
+        error
+    } =
+        await window.hbxSupabase
+            .from("users")
+            .select("*")
+            .eq(
+                "is_teacher",
+                true
+            )
+            .order(
+                "username"
+            );
+
+    if (error) {
+
+        teacherList.innerHTML =
+            error.message;
+
+        return;
+
+    }
+
+    teacherList.innerHTML = "";
+
+    if (
+        data.length === 0
+    ) {
+
+        teacherList.innerHTML =
+
+            "<p>No teachers yet.</p>";
+
+        return;
+
+    }
+
+    for (
+        let i = 0;
+        i < data.length;
+        i++
+    ) {
+
+        const teacher =
+            data[i];
+
+        teacherList.innerHTML += `
+
+            <div class="teacherCard">
+
+                <div>
+
+                    <span class="teacherBadge">
+
+                        ✔
+
+                    </span>
+
+                    <span class="teacherName">
+
+                        ${teacher.username}
+
+                    </span>
+
+                </div>
+
+                <button
+                    class="removeTeacherButton"
+                    onclick="removeTeacher('${teacher.username}')"
+                >
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+async function removeTeacher(
+    username
+) {
+
+    const answer =
+        confirm(
+
+            "Remove teacher permissions from " +
+            username +
+            "?"
+
+        );
+
+    if (!answer) {
+
+        return;
+
+    }
+
+    const {
+        error
+    } =
+        await window.hbxSupabase
+            .from("users")
+            .update({
+
+                is_teacher: false
+
+            })
+            .eq(
+                "username",
+                username
+            );
+
+    if (error) {
+
+        alert(
+            error.message
+        );
+
+        return;
+
+    }
+
+    loadTeachers();
+
+}

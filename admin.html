@@ -5,24 +5,49 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>HBN Admin</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/navbar.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
 
 </head>
 
 <body>
 
+    <div id="navbar"></div>
+
     <div id="adminPanel">
 
-        <h1>HBN Admin Panel</h1>
+        <h1>
 
-        <p>Create invitation codes for students.</p>
+            HBN Admin Panel
+
+        </h1>
+
+        <p>
+
+            Manage invitation codes and teacher accounts.
+
+        </p>
 
         <div id="controls">
 
@@ -34,16 +59,28 @@
                 placeholder="Amount"
             >
 
-            <button id="generateButton">
+            <button
+                id="generateButton"
+            >
+
                 Generate
+
             </button>
 
-            <button id="copyAllButton">
+            <button
+                id="copyAllButton"
+            >
+
                 Copy All
+
             </button>
 
-            <button id="clearButton">
+            <button
+                id="clearButton"
+            >
+
                 Clear
+
             </button>
 
         </div>
@@ -54,18 +91,68 @@
             placeholder="Search codes..."
         >
 
-        <h2>Unused Codes</h2>
+        <h2>
+
+            Unused Codes
+
+        </h2>
 
         <div id="unusedList"></div>
 
-        <h2>Used Codes</h2>
+        <h2>
+
+            Used Codes
+
+        </h2>
 
         <div id="usedList"></div>
+
+        <hr>
+
+        <h2>
+
+            Teacher Management
+
+        </h2>
+
+        <p>
+
+            Manage teacher accounts for HBN.
+
+        </p>
+
+        <div id="searchSection">
+
+            <input
+                id="usernameInput"
+                type="text"
+                placeholder="Enter username..."
+            >
+
+            <button
+                id="makeTeacherButton"
+            >
+
+                Make Teacher
+
+            </button>
+
+        </div>
+
+        <div id="teacherList">
+
+            Loading...
+
+        </div>
 
     </div>
 
     <script src="js/supabase.js"></script>
+
+    <script src="js/navbar.js"></script>
+
     <script src="js/admin.js"></script>
+
 
 </body>
 

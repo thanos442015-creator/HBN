@@ -11,6 +11,10 @@ if (!currentUser) {
 const classList =
     document.getElementById("classList");
 
+ const createClassButton =
+    document.getElementById(
+        "createClassButton"
+    );
 initialize();
 
 async function initialize() {
@@ -39,6 +43,20 @@ async function initialize() {
         loadStudentClasses();
 
     }
+    if (isTeacher) {
+
+    createClassButton.style.display =
+        "block";
+
+    createClassButton.onclick =
+        function () {
+
+            window.location.href =
+                "create_class.html";
+
+        };
+
+}
 
 }
 

@@ -18,7 +18,9 @@
 
     border-bottom: 1px solid rgb(55,55,55);
 
-    position: relative;
+    position: sticky;
+
+    top: 0;
 
     z-index: 1000;
 
@@ -46,6 +48,14 @@
 
     cursor: pointer;
 
+    transition: .2s;
+
+}
+
+#logo:hover {
+
+    color: rgb(100,175,255);
+
 }
 
 #menuButton {
@@ -66,15 +76,27 @@
 
     font-size: 28px;
 
+    font-weight: bold;
+
     cursor: pointer;
 
-    transition: .2s;
+    transition:
+        background .2s,
+        transform .15s;
 
 }
 
 #menuButton:hover {
 
     background: rgb(70,150,255);
+
+    transform: translateY(-2px);
+
+}
+
+#menuButton:active {
+
+    transform: scale(.96);
 
 }
 
@@ -141,7 +163,11 @@
 
     #menuButton {
 
-        display: block;
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
 
     }
 
@@ -167,29 +193,45 @@
 
         display: none;
 
+        overflow: hidden;
+
+        box-shadow: 0 10px 25px rgba(0,0,0,.35);
+
     }
 
     .navButton {
 
         width: 100%;
 
-        height: 55px;
+        height: 56px;
+
+        border: none;
 
         border-radius: 0;
 
         background: transparent;
 
+        box-shadow: none;
+
         border-bottom: 1px solid rgb(55,55,55);
 
-        box-shadow: none;
+        text-align: left;
+
+        padding-left: 25px;
+
+    }
+
+    .navButton:last-child {
+
+        border-bottom: none;
 
     }
 
     .navButton:hover {
 
-        transform: none;
-
         background: rgb(55,55,55);
+
+        transform: none;
 
         box-shadow: none;
 

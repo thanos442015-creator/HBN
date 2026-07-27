@@ -1,3 +1,12 @@
+const currentUser = JSON.parse(
+    localStorage.getItem("HBN_User")
+);
+
+const isAdmin =
+    currentUser &&
+    currentUser.username ===
+    "Thanos Johnson";
+
 const navbar = document.getElementById("navbar");
 
 navbar.innerHTML = `
@@ -30,6 +39,20 @@ navbar.innerHTML = `
             Classes
 
         </button>
+
+        ${
+            isAdmin
+            ?
+            `
+            <button class="navButton" id="adminButton">
+
+                Admin
+
+            </button>
+            `
+            :
+            ""
+        }
 
         <button class="navButton" id="profileButton">
 
@@ -78,6 +101,18 @@ function () {
 
 };
 
+if (isAdmin) {
+
+    document.getElementById("adminButton").onclick =
+    function () {
+
+        window.location.href =
+            "admin.html";
+
+    };
+
+}
+
 document.getElementById("profileButton").onclick =
 function () {
 
@@ -121,6 +156,9 @@ function updateNavbar() {
 
         navRight.style.display =
             "none";
+
+        menuButton.textContent =
+            "☰";
 
     } else {
 
