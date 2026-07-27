@@ -90,7 +90,9 @@ postButton.onclick = async function () {
 
                 text: text,
 
-                likes: 0
+                likes: 0,
+
+                class: "HBN"
 
             });
 
@@ -114,6 +116,7 @@ async function loadPosts() {
         await window.hbxSupabase
             .from("posts")
             .select("*")
+            .eq("class", "HBN")
             .order(
                 "created_at",
                 {

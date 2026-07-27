@@ -231,7 +231,7 @@ function showEditor() {
 
             <h2>Edit Profile</h2>
 
-            <label>Username</label>
+            <label>Real Name</label>
 
             <input
                 id="usernameInput"
